@@ -16,6 +16,16 @@ interface TransactionDTO {
   category: string;
 }
 
+interface NewTransactionDTO {
+  title: string;
+
+  type: 'income' | 'outcome';
+
+  value: number;
+
+  category: Category;
+}
+
 class ImportTransactionsService {
   async execute(filePath: string): Promise<Transaction[]> {
     const transactionsRepository = getCustomRepository(TransactionsRepository);
@@ -80,7 +90,7 @@ class ImportTransactionsService {
         value: transaction.value,
         category_id: allCategories.find(
           category => category.title === transaction.category,
-        ),
+        )?.id,
       })),
     );
 
