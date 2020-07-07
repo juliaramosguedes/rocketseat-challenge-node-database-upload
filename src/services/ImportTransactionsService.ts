@@ -91,6 +91,9 @@ class ImportTransactionsService {
         category_id: allCategories.find(
           category => category.title === transaction.category,
         )?.id,
+        category: allCategories.find(
+          category => category.title === transaction.category,
+        ),
       })),
     );
 
